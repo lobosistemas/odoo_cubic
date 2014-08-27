@@ -7,7 +7,7 @@ Instalación de librerías Python
     $ sudo easy_install jinja2
     $ sudo easy_install decorator
     $ sudo easy_install requests
-    $ sudo easy_install Geraldo
+    $ sudo easy_install CubicReport
     $ sudo easy_install openerp-client-lib
     $ sudo easy_install openerp-client-etl
     $ sudo easy_install gunicorn
