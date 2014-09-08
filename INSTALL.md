@@ -94,7 +94,7 @@ Generación de certificado SSL
     $ sudo openssl genrsa -des3 -out openerp.pkey 1024
 
 Elimina la clave del certificado ssl
-  
+
     $ sudo openssl rsa -in openerp.pkey -out openerp.key
 
 Firmando el certificado ssl
@@ -169,3 +169,42 @@ Actualizar los parámetros del OpenERP
 Iniciando el Gunicorn
 
     $ gunicorn openerp:service.wsgi_server.application -c openerp-wsgi.py
+
+Instalación Servidor de Correos
+-------------------------------
+
+Instalando el iRedMail
+
+    $ wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-0.8.7.tar.bz2
+    $ tar -zjvf iRedMail-0.8.7.tar.bz2
+    $ cd iRedMail
+    $ bash iRedMail.sh
+    
+Configuración del Postfix
+
+    $ sudo vi /etc/postfix/main.cf
+    ---------------------------------------------
+    ...
+    mynetworks = 127.0.0.0/8 <ip_del_open>/32
+    smtpd_reject_unlisted_sender = no
+    smtpd_recipient_restrictions = reject_unknown_sender_domain, reject_unknown_recipient_domain, reject_non_fqdn_sender, reject_non_fqdn_recipient, reject_unlisted_recipient, check_policy_service inet:127.0.0.1:7777, check_policy_service inet:127.0.0.1:10031, permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
+    ...
+    ---------------------------------------------
+    $sudo service postfix restart
+    
+Configuración del Greylist
+
+    $ mysql -u root -p
+    mysql> use cluebringer
+    mysql> insert into greylisting_whitelist values (26,'SenderIP:<ip_del_open>','OpenERP',0);
+    mysql> \q
+    $ sudo service postfix-cluebringer restart
+
+Ingresar a https://<ip_del_correo>/iredadmin/ y registrar al usuario catchall@<dominio_alias_del_openerp>
+
+Ingresar al OpenERP con usuario administrador y realizar las siguientes tareas:
+
+    1. Ingresar al menú "Configuración > Configuración > Configuraciones Generales" y actualizar el <dominio_alias_del_openerp>
+    2. Ingresar al enlace "Configurar la pasarela de correo electrónico entrante" y registrar los datos para descargar el correo de catchall@<dominio_alias_del_openerp> via pop3/imap con SSL/TLS, registrar solo los campos obligatorios.
+    3. Ingresar al enlace "Configurar servidores de correo saliente" y registrar los datos de la cuenta para enviar correo electrónico, puede utilizarce la misma cuenta catchall@<dominio_alias_del_openerp>, utilizar el puerto 25 y la "seguridad de conexión" TLS /STARTTLS)
+    4. Para vincular las cuentas de correos que se crean con el https://<ip_del_correo>/iredadmin/ con los usuarios de OpenERP se debe de configurar los alias de los usuarios en el menú de usuarios o si tienen varios alias en el menú "Configuración > Técnico > Email > Alias"
