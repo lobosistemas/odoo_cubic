@@ -30,7 +30,9 @@ Descarga de repositorios, preguntar el nombre se le puso a su repositorio privad
 
     $ git clone https://github.com/CubicERP/<tu_empresa>.git src
     $ cd src
+    ## Inicializa los submodulos para odoo y branch ##
     $ git submodule init
+    ## Actualiza los submodulos, es decir los directorios odoo y branch ##
     $ git submodule update
 
 
@@ -38,16 +40,34 @@ Para actualizar los repositorios poner los siguientes comandos:
 
     ## Actualiza el directorio actual de su repositorio privado, es decir "src" ##
     $ git pull 
-    ## Actualiza los submodulos, es decir los directorios odoo y branch ##
-    $ git submodule update
-    ## Para abrir la versión 7.0 del repositorio ##
-    $ git checkout 7.0
-    $ git submodule foreach git checkout 7.0
+    ## Para abrir la versión 8.0 del repositorio ##
+    $ git checkout 8.0
+    $ git submodule foreach git checkout 8.0
+    ## Limpia posibles archivos temporales
+    $ git clean -d -f
+    $ git submodule foreach git clean -d -f
+
+
+Generación del archivo de configuración
+
+    $ odoo/openerp-server -s
+    $ cp ~/.openerp_serverrc .
 
 
 Modificación del archivo de configuración (asignación de puertos)
 
     $ vi .openerp_serverrc
+    -------------------------------------------
+    [options]
+    addons_path = ./odoo/addons,./trunk,./branch 
+    ...
+    xmlrpc = True
+    xmlrpc_interface =
+    xmlrpc_port = 8069
+    xmlrpcs = True
+    xmlrpcs_interface =
+    xmlrpcs_port = 8071
+    -------------------------------------------
 
 
 Los comandos para iniciar y parar el servicio del OpenERP en desarrollo con Werkzeugh
