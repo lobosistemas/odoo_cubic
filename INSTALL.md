@@ -200,7 +200,7 @@ Configuración del Greylist
     mysql> \q
     $ sudo service postfix-cluebringer restart
 
-Ingresar a https://<ip_del_correo>/iredadmin/ y registrar al usuario catchall@<dominio_alias_del_openerp>
+Ingresar a https://<ip_del_correo>/iredadmin/ y registrar al usuario catchall@<-dominio_alias_del_openerp->
 
 Ingresar al OpenERP con usuario administrador y realizar las siguientes tareas:
 
