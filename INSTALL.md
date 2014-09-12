@@ -3,7 +3,7 @@ GUIA DE INSTALACIÓN EN UBUNTU
 
 Instalación de librerías Python
 
-    $ sudo apt-get install python-docutils python-gdata python-mako python-dateutil python-feedparser python-lxml python-tz python-vatnumber python-webdav python-xlwt python-werkzeug python-yaml python-zsi python-unittest2 python-mock python-libxslt1 python-ldap python-reportlab python-pybabel python-pychart python-simplejson python-psycopg2 python-vobject python-openid python-setuptools bzr postgresql unixodbc unixodbc-dev python-pyodbc python-psutil nginx git wkhtmltopdf
+    $ sudo apt-get install python-docutils python-gdata python-mako python-dateutil python-feedparser python-lxml python-tz python-vatnumber python-webdav python-xlwt python-werkzeug python-yaml python-zsi python-unittest2 python-mock python-libxslt1 python-ldap python-reportlab python-pybabel python-pychart python-simplejson python-psycopg2 python-vobject python-openid python-setuptools bzr postgresql unixodbc unixodbc-dev python-pyodbc python-psutil nginx git
     $ sudo easy_install jinja2
     $ sudo easy_install decorator
     $ sudo easy_install requests
@@ -11,6 +11,8 @@ Instalación de librerías Python
     $ sudo easy_install openerp-client-lib
     $ sudo easy_install openerp-client-etl
     $ sudo easy_install gunicorn
+    $ wget http://downloads.sourceforge.net/project/wkhtmltopdf/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+    $ sudo dpkg -i wkhtmltox-0.12.1_linux-trusty-amd64.deb
 
 
 Creación del usuario de base de datos
