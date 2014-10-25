@@ -230,3 +230,9 @@ Ingresar al OpenERP con usuario administrador y realizar las siguientes tareas:
     2. Ingresar al enlace "Configurar la pasarela de correo electrónico entrante" y registrar los datos para descargar el correo de catchall@<dominio_alias_del_openerp> via pop3/imap con SSL/TLS, registrar solo los campos obligatorios.
     3. Ingresar al enlace "Configurar servidores de correo saliente" y registrar los datos de la cuenta para enviar correo electrónico, puede utilizarce la misma cuenta catchall@<dominio_alias_del_openerp>, utilizar el puerto 25 y la "seguridad de conexión" TLS /STARTTLS)
     4. Para vincular las cuentas de correos que se crean en https://<ip_del_correo>/iredadmin/ con los usuarios de OpenERP se debe de configurar los alias de los usuarios en el menú de usuarios o si tienen varios alias en el menú "Configuración > Técnico > Email > Alias"
+
+OS X
+----
+Agregar un link simbolico a Wkhtmltopdf
+
+    $ sudo ln -s /usr/local/bin/wkhtmltopdf wkhtmltopdf
