@@ -235,4 +235,4 @@ OS X
 ----
 Agregar un link simbolico a Wkhtmltopdf
 
-    $ sudo ln -s /usr/local/bin/wkhtmltopdf wkhtmltopdf
+    $ sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
