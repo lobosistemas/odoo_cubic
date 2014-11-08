@@ -154,6 +154,7 @@ Configurando NGINX
     }
     ---------------------------------------------
     $ sudo ln -s /etc/nginx/sites-available/openerp /etc/nginx/sites-enabled/openerp
+    $ sudo rm /etc/nginx/sites-enabled/default
 
 Reiniciando NGINX
 
