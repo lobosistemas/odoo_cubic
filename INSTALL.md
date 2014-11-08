@@ -56,6 +56,8 @@ Modificación del archivo de configuración (asignación de puertos)
     [options]
     addons_path = ./odoo/addons,./trunk,./branch 
     ...
+    data_dir = ./data
+    ...
     xmlrpc = True
     xmlrpc_interface =
     xmlrpc_port = 8069
