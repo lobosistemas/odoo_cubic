@@ -108,14 +108,14 @@ Instalación del Gunicorn + NGINX
 
 Debe conectarse con un usuario con permisos de ejecutar sudo
 
-Generación de certificado SSL
+Generación de la firma digital
 
     $ cd /etc/nginx/
     $ sudo mkdir ssl
     $ cd /etc/nginx/ssl
     $ sudo openssl genrsa -des3 -out openerp.pkey 1024
 
-Elimina la clave del certificado ssl
+Elimina la clave de la firma digital
 
     $ sudo openssl rsa -in openerp.pkey -out openerp.key
 
