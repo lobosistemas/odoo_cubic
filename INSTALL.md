@@ -56,6 +56,8 @@ Modificación del archivo de configuración (asignación de puertos)
     [options]
     addons_path = ./odoo/addons,./trunk,./branch 
     ...
+    data_dir = ./data
+    ...
     xmlrpc = True
     xmlrpc_interface =
     xmlrpc_port = 8069
@@ -152,6 +154,7 @@ Configurando NGINX
     }
     ---------------------------------------------
     $ sudo ln -s /etc/nginx/sites-available/openerp /etc/nginx/sites-enabled/openerp
+    $ sudo rm /etc/nginx/sites-enabled/default
 
 Reiniciando NGINX
 
