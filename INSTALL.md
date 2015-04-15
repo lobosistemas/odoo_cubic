@@ -194,8 +194,8 @@ Instalación Servidor de Correos
 
 Instalando el iRedMail
 
-    $ wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-0.8.7.tar.bz2
-    $ tar -zjvf iRedMail-0.8.7.tar.bz2
+    $ wget https://bitbucket.org/zhb/iredmail/downloads/iRedMail-0.9.0.tar.bz2
+    $ tar -zjvf iRedMail-0.9.0.tar.bz2
     $ cd iRedMail
     $ bash iRedMail.sh
     
@@ -205,8 +205,6 @@ Configuración del Postfix
     ---------------------------------------------
     ...
     mynetworks = 127.0.0.0/8 <ip_del_open>/32
-    smtpd_reject_unlisted_sender = no
-    smtpd_recipient_restrictions = reject_unknown_sender_domain, reject_unknown_recipient_domain, reject_non_fqdn_sender, reject_non_fqdn_recipient, reject_unlisted_recipient, check_policy_service inet:127.0.0.1:7777, check_policy_service inet:127.0.0.1:10031, permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination
     ...
     ---------------------------------------------
     $sudo service postfix restart
