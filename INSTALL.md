@@ -209,13 +209,20 @@ Configuración del Postfix
     ---------------------------------------------
     $sudo service postfix restart
     
-Configuración del Greylist
+Configuración DNS
 
-    $ mysql -u root -p
-    mysql> use cluebringer
-    mysql> insert into greylisting_whitelist values (26,'SenderIP:<ip_del_open>','OpenERP',0);
-    mysql> \q
-    $ sudo service postfix-cluebringer restart
+    1. Ingresar el registro MX de su dominio, el cual debe apuntar a un host con el DNS reverso (PTR) activado en ip4 y ip6
+    2. Agregar el registro TXT spf para su dominio, ejemplo del TXT:
+        v=spf1 ip4:66.175.218.31 ip6:2600:3c01::f03c:91ff:fe18:293f ip4:173.230.150.187 ip6:2600:3c01::f03c:91ff:fe50:2bdd ip4:50.116.8.92 ip6:2600:3c01::f03c:91ff:fe50:c395 ~all
+    3. Agregar el registro TXT DKIM para la encriptación de ls correos
+        3.1 Para obtener llave ejecutar y el valor del TXT:
+            $ amavis-new showkeys
+        3.2 Registrar la llave obtenida en el registro TXT del nombre dkim._domainkey.<tu.dominio> ejemplo del TXT:
+            v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCx/BKIq6ZRAiQkAPNcH+53SIp95b9xmjL2O5tebay2trbjJnuF+6hl8R4BaRIgscH7DqS4P5irlb8buD6XDPD7ubOWZvevJdbVKyVKerVZAM1nMVCP6Rt+wtz+mL06l6qZA/WhW9YCtWREaAtOAJJhy8hKNikwvRE/8uimmEkmPQIDAQAB
+        3.3 Verificar si la llave fue cargada correctamente
+            $ amavis-new testkeys
+    4. Agregar el registro TXT DMARC para la validación del spf y DKIM, el nombre debe ser _dmarc.<tu.dominio> ejemplo del TXT:
+        v=DMARC1; p=quarantine; pct=100; rua=mailto:isp@lapaginaweb.com; ruf=mailto:isp@lapaginaweb.com
 
 Ingresar a https://<ip_del_correo>/iredadmin/ y registrar al usuario catchall@<-dominio_alias_del_openerp->
 
@@ -223,7 +230,7 @@ Configuración del catch all
 
     $ mysql -u root -p
     mysql> use vmail
-    mysql> INSERT INTO alias (address, goto, domain) VALUES ('@<dominio_alias>', 'catchall@<dominio_alias>', '<dominio_alias>');
+    mysql> INSERT INTO alias (address, goto, domain) VALUES ('<dominio_alias>', 'catchall@<dominio_alias>', '<dominio_alias>');
     mysql> \q 
 
 Ingresar al OpenERP con usuario administrador y realizar las siguientes tareas:
