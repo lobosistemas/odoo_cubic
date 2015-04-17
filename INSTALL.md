@@ -226,12 +226,6 @@ Configuración DNS
 
 Ingresar a https://<ip_del_correo>/iredadmin/ y registrar al usuario catchall@<-dominio_alias_del_openerp->
 
-Configuración del catch all
-
-    $ mysql -u root -p
-    mysql> use vmail
-    mysql> INSERT INTO alias (address, goto, domain) VALUES ('<dominio_alias>', 'catchall@<dominio_alias>', '<dominio_alias>');
-    mysql> \q 
 
 Ingresar al OpenERP con usuario administrador y realizar las siguientes tareas:
 
